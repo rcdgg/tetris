@@ -8,6 +8,7 @@ class Game:
         self.blocks = [Tblock(),Sblock(),Zblock(),Iblock(),Oblock(),Jblock(),Lblock()]
         self.curr_block = self.get_block()
         self.next_block = self.get_block()
+        self.game_over = False
 
     def get_block(self):
         if self.blocks == []:
@@ -39,6 +40,9 @@ class Game:
             self.grid.grid[tile[0]][tile[1]] = self.curr_block.id
         self.curr_block = self.next_block
         self.next_block = self.get_block()
+        self.grid.clear_row()
+        if self.valid() == False:
+            self.game_over = True
 
     def valid(self):
         tiles= self.curr_block.block_pos()
@@ -62,3 +66,10 @@ class Game:
     def draw(self,screen):
         self.grid.draw(screen)  
         self.curr_block.draw(screen)
+
+    def reset(self):
+        self.grid.reset()
+        self.blocks = [Tblock(),Sblock(),Zblock(),Iblock(),Oblock(),Jblock(),Lblock()]
+        self.curr_block = self.get_block()
+        self.next_block = self.get_block()
+        self.game_over = False

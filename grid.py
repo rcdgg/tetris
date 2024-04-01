@@ -40,3 +40,24 @@ class Grid:
     def empty(self,row,col):
         if self.grid[row][col] == 0: return True
         return False
+    def is_row_full(self,row):
+        for col in range(self.cols):
+            if self.grid[row][col] == 0: return False
+        return True
+    def empty_row(self,row):
+        for col in range(self.cols):
+            self.grid[row][col] = 0
+    def move_row(self,row,k):
+        if k!= 0:
+            for col in range(self.cols):
+                self.grid[row+k][col] = self.grid[row][col]
+    def clear_row(self):
+        complete = 0
+        for row in range(self.rows-1,0,-1):
+            if self.is_row_full(row):
+                complete +=1
+            else:
+                self.move_row(row,complete)
+
+    def reset(self):
+        self.grid = [[0 for i in range( self.cols)] for j in range(self.rows)]
