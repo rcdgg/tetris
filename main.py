@@ -57,18 +57,19 @@ while True:
 
         if event.type == GAME_OVER:
             t_b_s = next(text_blink_surf)
+
     screen.fill((44,44,127))
+    screen.blit(score_surf,score_rect)
+    screen.blit(next_surf,next_rect)
+    
+    pg.draw.rect(screen,(150,  170,230),score_r,0,15)
+    pg.draw.rect(screen,(150,  170,230),next_r,0,15)
+    score_number = score_text.render(str(game.score),True,'White')
+    score_number_surf = score_number.get_rect(centerx = score_r.centerx,centery = score_r.centery)
+    screen.blit(score_number,score_number_surf)
     game.draw(screen)
     if game.game_over:
         screen.blit(t_b_s,text_rect)
-    score_number = score_text.render(str(game.score),True,'White')
-    score_number_surf = score_number.get_rect(centerx = score_r.centerx,centery = score_r.centery)
-    screen.blit(score_surf,score_rect)
-    screen.blit(next_surf,next_rect)
-    pg.draw.rect(screen,(150,  170,230),score_r,0,15)
-    pg.draw.rect(screen,(150,  170,230),next_r,0,15)
-    screen.blit(score_number,score_number_surf)
-    game.next_block.draw(screen,255,250)
     pg.display.update()
     clock.tick(60)
     
