@@ -11,11 +11,12 @@ class Block:
         self.cell_size = 30
         self.state = {}
 
-    def draw(self,screen):
+    def draw(self,screen,x_off, y_off):
         block_state = self.block_pos()
         for tile in block_state:
-            tile_rect = pg.Rect(tile[1]*self.cell_size +11,tile[0]*self.cell_size+11,self.cell_size -1,self.cell_size-1)
+            tile_rect = pg.Rect(x_off+tile[1]*self.cell_size,y_off + tile[0]*self.cell_size,self.cell_size -1,self.cell_size-1)
             pg.draw.rect(screen,self.colors[self.id],tile_rect)
+    
 
     def move(self,row,col):
         self.r_offset += row

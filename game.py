@@ -78,7 +78,7 @@ class Game:
 
     def draw(self,screen):
         self.grid.draw(screen)  
-        self.curr_block.draw(screen)
+        self.curr_block.draw(screen,11,11)
 
     def reset(self):
         self.grid.reset()

@@ -68,6 +68,7 @@ while True:
     pg.draw.rect(screen,(150,  170,230),score_r,0,15)
     pg.draw.rect(screen,(150,  170,230),next_r,0,15)
     screen.blit(score_number,score_number_surf)
+    game.next_block.draw(screen,255,250)
     pg.display.update()
     clock.tick(60)
     
