@@ -9,6 +9,18 @@ class Game:
         self.curr_block = self.get_block()
         self.next_block = self.get_block()
         self.game_over = False
+        self.score = 0
+
+    def update_score(self,complete_lines,move_down):
+        if complete_lines == 0:
+            pass
+        elif complete_lines == 1:
+            self.score += 100
+        elif complete_lines == 2:
+            self.score += 300
+        else:
+            self.score += 500
+        self.score += move_down
 
     def get_block(self):
         if self.blocks == []:
@@ -40,9 +52,10 @@ class Game:
             self.grid.grid[tile[0]][tile[1]] = self.curr_block.id
         self.curr_block = self.next_block
         self.next_block = self.get_block()
-        self.grid.clear_row()
+        cleared_lines = self.grid.clear_row()
         if self.valid() == False:
             self.game_over = True
+        self.update_score(cleared_lines,0)
 
     def valid(self):
         tiles= self.curr_block.block_pos()
@@ -73,3 +86,4 @@ class Game:
         self.curr_block = self.get_block()
         self.next_block = self.get_block()
         self.game_over = False
+        self.score = 0

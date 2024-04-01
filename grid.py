@@ -29,7 +29,7 @@ class Grid:
         for i in range(self.rows):
             for j in range(self.cols):
                 cell_val = self.grid[i][j]
-                cell_rect = pg.Rect(j*self.cell_size+1,i*self.cell_size+1,self.cell_size-1,self.cell_size-1)
+                cell_rect = pg.Rect(j*self.cell_size+11,i*self.cell_size+11,self.cell_size-1,self.cell_size-1)
                 pg.draw.rect(screen,self.colors[cell_val],cell_rect)
 
     def inside(self,row,col):
@@ -58,6 +58,6 @@ class Grid:
                 complete +=1
             else:
                 self.move_row(row,complete)
-
+        return complete
     def reset(self):
         self.grid = [[0 for i in range( self.cols)] for j in range(self.rows)]

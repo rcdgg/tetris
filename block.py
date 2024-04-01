@@ -14,7 +14,7 @@ class Block:
     def draw(self,screen):
         block_state = self.block_pos()
         for tile in block_state:
-            tile_rect = pg.Rect(tile[1]*self.cell_size +1,tile[0]*self.cell_size+1,self.cell_size -1,self.cell_size-1)
+            tile_rect = pg.Rect(tile[1]*self.cell_size +11,tile[0]*self.cell_size+11,self.cell_size -1,self.cell_size-1)
             pg.draw.rect(screen,self.colors[self.id],tile_rect)
 
     def move(self,row,col):
