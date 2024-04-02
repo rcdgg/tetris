@@ -3,13 +3,17 @@ from game import Game
 from sys import exit
 from itertools import cycle
 pg.init()
-
 screen = pg.display.set_mode((500,620))
 pg.display.set_caption('hello')
 clock = pg.time.Clock()
 game = Game()
 GAME_UPDATE = pg.USEREVENT
 pg.time.set_timer(GAME_UPDATE,300)
+happy = pg.image.load('images\happy lebaron.png')
+happy = pg.transform.scale(happy,(150,150))
+
+evil = pg.image.load('images\evil lebaron.png')
+evil = pg.transform.scale(evil,(250,100))
 
 #game over text
 GAME_OVER = pg.USEREVENT+1
@@ -33,6 +37,7 @@ next_rect = next_surf.get_rect(center = (405,200))
 
 score_r = pg.Rect(320,70,170,50)
 next_r = pg.Rect(320,220,170,140)
+img_rect = happy.get_rect(center = (next_r.centerx,next_r.centery + 200))
 while True:
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -62,14 +67,17 @@ while True:
     screen.blit(score_surf,score_rect)
     screen.blit(next_surf,next_rect)
     
-    pg.draw.rect(screen,(150,  170,230),score_r,0,15)
-    pg.draw.rect(screen,(150,  170,230),next_r,0,15)
+    pg.draw.rect(screen,(132, 150, 202),score_r,0,15)
+    pg.draw.rect(screen,(132, 150, 202),next_r,0,15)
     score_number = score_text.render(str(game.score),True,'White')
     score_number_surf = score_number.get_rect(centerx = score_r.centerx,centery = score_r.centery)
     screen.blit(score_number,score_number_surf)
     game.draw(screen)
-    if game.game_over:
+
+    if game.game_over == False: screen.blit(happy,img_rect) 
+    else:
         screen.blit(t_b_s,text_rect)
+        screen.blit(evil,img_rect)
     pg.display.update()
     clock.tick(60)
     

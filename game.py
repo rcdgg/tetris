@@ -1,6 +1,8 @@
 from grid import Grid
 from block import *
 import random
+pg.mixer.init()
+
 
 class Game:
     def __init__(self) -> None:
@@ -10,6 +12,8 @@ class Game:
         self.next_block = self.get_block()
         self.game_over = False
         self.score = 0
+        pg.mixer.Channel(0).play(pg.mixer.Sound('sounds\lebaron happy.ogg'),-1)
+        pg.mixer.Channel(0).set_volume(0.2)
 
     def update_score(self,complete_lines,move_down):
         if complete_lines == 0:
@@ -55,6 +59,8 @@ class Game:
         cleared_lines = self.grid.clear_row()
         if self.valid() == False:
             self.game_over = True
+            pg.mixer.Channel(0).pause()
+            pg.mixer.Channel(1).play(pg.mixer.Sound('sounds\lebaron evil.ogg'),-1)
         self.update_score(cleared_lines,0)
 
     def valid(self):
@@ -95,3 +101,6 @@ class Game:
         self.next_block = self.get_block()
         self.game_over = False
         self.score = 0
+        pg.mixer.Channel(0).play(pg.mixer.Sound('sounds\lebaron happy.ogg'),-1)
+        pg.mixer.Channel(0).set_volume(0.2)
+        pg.mixer.Channel(1).pause()
