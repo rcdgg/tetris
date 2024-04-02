@@ -48,6 +48,8 @@ while True:
                 game.reset()
                 
         if event.type == pg.KEYDOWN:
+            pg.mixer.Channel(4).play(pg.mixer.Sound('sounds\move sound.ogg'))
+            pg.mixer.Channel(4).set_volume(0.2)
             if event.key in (pg.K_a, pg.K_LEFT) and not game.game_over:
                 game.move_left()
             if event.key in (pg.K_RIGHT,pg.K_d) and not game.game_over:

@@ -57,6 +57,8 @@ class Game:
         self.curr_block = self.next_block
         self.next_block = self.get_block()
         cleared_lines = self.grid.clear_row()
+        if cleared_lines > 0:
+            pg.mixer.Channel(2).play(pg.mixer.Sound('sounds\\row clear.ogg'))
         if self.valid() == False:
             self.game_over = True
             pg.mixer.Channel(0).pause()
