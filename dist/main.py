@@ -9,16 +9,16 @@ clock = pg.time.Clock()
 game = Game()
 GAME_UPDATE = pg.USEREVENT
 pg.time.set_timer(GAME_UPDATE,300)
-happy = pg.image.load('images\happy lebaron.png')
+happy = pg.image.load('dist\images\happy lebaron.png')
 happy = pg.transform.scale(happy,(150,150))
 
-evil = pg.image.load('images\evil lebaron.png')
+evil = pg.image.load('dist\images\evil lebaron.png')
 evil = pg.transform.scale(evil,(250,100))
 
 #game over text
 GAME_OVER = pg.USEREVENT+1
 pg.time.set_timer(GAME_OVER,600)
-game_over_text = pg.font.Font('Minecraft.ttf',size = 35)
+game_over_text = pg.font.Font('dist\Minecraft.ttf',size = 35)
 text_surf = game_over_text.render(
 ''' Press Any Key 
    to Restart''', True, 'White')
@@ -28,7 +28,7 @@ no_text_surf.set_colorkey((0,0,0))
 text_blink_surf = cycle([text_surf,no_text_surf])
 t_b_s = next(text_blink_surf)
 
-score_text = pg.Font('Minecraft.ttf',20)
+score_text = pg.Font('dist\Minecraft.ttf',20)
 
 score_surf = score_text.render('Score',True,'White')
 score_rect = score_surf.get_rect(center = (405,50))
@@ -48,7 +48,7 @@ while True:
                 game.reset()
                 
         if event.type == pg.KEYDOWN:
-            pg.mixer.Channel(4).play(pg.mixer.Sound('sounds\move sound.ogg'))
+            pg.mixer.Channel(4).play(pg.mixer.Sound('dist\sounds\move sound.ogg'))
             pg.mixer.Channel(4).set_volume(0.2)
             if event.key in (pg.K_a, pg.K_LEFT) and not game.game_over:
                 game.move_left()
